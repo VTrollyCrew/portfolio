@@ -1,8 +1,63 @@
 function toggleMenu() {
   const menu = document.querySelector(".menu-links");
   const icon = document.querySelector(".hamburger-icon");
+  const overlay = document.querySelector(".overlay") || createOverlay();
+
   menu.classList.toggle("open");
   icon.classList.toggle("open");
+  overlay.classList.toggle("active");
+}
+
+function createOverlay() {
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  overlay.onclick = toggleMenu;
+  document.body.appendChild(overlay);
+  return overlay;
+}
+
+// New swipe detection functionality
+let touchStartX = 0;
+let touchEndX = 0;
+const swipeThreshold = 50; // Minimum swipe distance in pixels
+
+document.addEventListener(
+  "touchstart",
+  (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  },
+  { passive: true }
+);
+
+document.addEventListener(
+  "touchend",
+  (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  },
+  { passive: true }
+);
+
+function handleSwipe() {
+  const menu = document.querySelector(".menu-links");
+
+  // Swipe from right to left (open menu)
+  if (
+    touchStartX - touchEndX > swipeThreshold &&
+    touchStartX > window.innerWidth - 50 && // Start from right edge
+    !menu.classList.contains("open")
+  ) {
+    toggleMenu();
+  }
+
+  // Swipe from left to right (close menu)
+  if (
+    touchEndX - touchStartX > swipeThreshold &&
+    touchStartX < 50 && // Start from left edge
+    menu.classList.contains("open")
+  ) {
+    toggleMenu();
+  }
 }
 
 // Create twinkling stars

@@ -45,6 +45,16 @@
   .about-container {
     flex-wrap: wrap;
   }
+
+  .section__pic_container {
+    width: 320px;
+    height: 320px;
+    margin: 0 auto 2rem;
+  }
+
+  .swipe-indicator {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -149,5 +159,19 @@
 
   .nav-links {
     font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .swipe-indicator {
+    display: block;
+  }
+
+  #desktop-nav {
+    display: none;
+  }
+
+  #hamburger-nav {
+    display: flex;
   }
 }

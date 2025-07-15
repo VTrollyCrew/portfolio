@@ -11,7 +11,6 @@
       rel="stylesheet"
       href="./assets/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css"
     />
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
   </head>
 
   <body>
@@ -35,6 +34,7 @@
           <span></span>
         </div>
         <div class="menu-links">
+          <div class="close-btn" onclick="toggleMenu()"><i class="fa fa-times"></i></div>
           <li><a href="#about" onclick="toggleMenu()">About</a></li>
           <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
           <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
@@ -359,7 +359,9 @@
             class="icon email-icon"
           />
           <p>
-            <a href="mailto:exampleemail@email.com" class="contact-links">exampleemail@email.com</a>
+            <a href="mailto:exampleemail@email.com" class="contact-links"
+              >exampleemail@email.com</a
+            >
           </p>
         </div>
         <div class="contact-info-container">
@@ -368,7 +370,11 @@
             alt="linkedin Icon"
             class="icon contact-icon"
           />
-          <p><a href="https://www.linkedin.com" class="contact-links">LinkedIn</a></p>
+          <p>
+            <a href="https://www.linkedin.com" class="contact-links"
+              >LinkedIn</a
+            >
+          </p>
         </div>
       </div>
     </section>

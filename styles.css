@@ -95,7 +95,7 @@ a:hover {
 
 #hamburger-nav {
   display: none;
-  background-color: white;
+  background-color: rgb(00, 00, 00, 0.3);
   background-size: 180% 180%;
   animation: gradient-animation 18s ease infinite;
 }
@@ -112,34 +112,62 @@ a:hover {
   height: 24px;
   width: 30px;
   cursor: pointer;
+  z-index: 1001; /* Ensure it stays above the sidebar */
 }
 
 .hamburger-icon span {
   width: 100%;
   height: 2px;
-  background-color: black;
+  background-color: white;
   transition: all 0.3 ease-in-out;
 }
 
 .menu-links {
-  position: absolute;
-  top: 100%;
-  right: 0;
+  position: fixed;
+  top: 0;
+  right: -300px; /* Start off-screen */
+  width: 250px;
+  height: 100vh;
   background-color: white;
-  width: fit-content;
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.3 ease-in-out;
+  transition: transform 0.3s ease-in-out, right 0.3s ease-in-out;
+  z-index: 1000;
+  padding-top: 80px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  touch-action: pan-y;
+}
+
+/* Prevent horizontal scroll on body when menu is open */
+body.menu-open {
+  overflow-x: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* For swipe gesture indicator */
+.swipe-indicator {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 10px;
+  height: 50px;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 5px 0 0 5px;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: none;
 }
 
 .menu-links a {
   display: block;
-  padding: 10px;
-  text-align: center;
-  font-size: 1.5rem;
+  padding: 15px 20px;
+  font-size: 1.2rem;
   color: black;
   text-decoration: none;
-  transition: all 0.3 ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-links a:hover {
+  background-color: #f0f0f0;
 }
 
 .menu-links li {
@@ -147,11 +175,11 @@ a:hover {
 }
 
 .menu-links.open {
-  max-height: 300px;
+  right: 0; /* Slide in from right */
 }
 
 .hamburger-icon.open span:first-child {
-  transform: rotate(45deg) translate(10px, 5px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .hamburger-icon.open span:nth-child(2) {
@@ -159,19 +187,45 @@ a:hover {
 }
 
 .hamburger-icon.open span:last-child {
-  transform: rotate(-45deg) translate(10px, -5px);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-.hamburger-icon span:first-child {
-  transform: none;
+.close-btn i{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
-.hamburger-icon span:first-child {
-  opacity: 1;
+.close-btn i:hover {
+  color: #000;
+  background-color: #f0f0f0;
+  transform: scale(1.1);
 }
 
-.hamburger-icon span:first-child {
-  transform: none;
+/* Add overlay when menu is open */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
 }
 
 /* Sections */
